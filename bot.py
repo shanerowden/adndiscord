@@ -1,6 +1,11 @@
+from main import init
+from adndiscord.attributes import AbilityScoreGen
+
 import os
 import discord
 from dotenv import load_dotenv
+
+init()
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -24,7 +29,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    await message.channel.send("This is a test.")
+    if message == "!roll attributes":
+        ability_scores = AbilityScoreGen()
+        await message.channel.send(str(ability_scores))
 
 
 

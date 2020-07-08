@@ -18,6 +18,8 @@ class AbilityScoreGen:
     def __repr__(self):
         return f"AbilityScoreGen(rolls={self.final})"
 
+    def __str__(self):
+        return ", ".join([str(i) for i in self.final])
 
     def __init__(
         self, d_quan: int = DEFAULT_DQ,
