@@ -39,8 +39,9 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message == "!roll":
+    if message == "roll":
         ability_scores = AbilityScoreGen()
+        print(ability_scores)
         await message.channel.send(str(ability_scores))
 
 
