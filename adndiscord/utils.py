@@ -1,7 +1,4 @@
 from adndiscord.pathconf import PATHS
-from logging import debug as log_d
-from logging import info as log_i
-from logging import debug as log_w
 
 def check_paths(paths: list = PATHS):
     """
@@ -27,6 +24,10 @@ def terminate(msg: str, code: int = 1):
     exit(code)
     
 def log(msg, level="debug"):
+    from logging import debug as log_d
+    from logging import info as log_i
+    from logging import debug as log_w
+
     print(f"Logging {level.upper()}: {msg}")
     if level == "debug":
         log_d(msg)

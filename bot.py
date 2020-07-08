@@ -1,49 +1,29 @@
-from main import init
-from adndiscord.attributes import AbilityScoreGen
-from textwrap import dedent as wrap
-
-import os
-import discord
 from dotenv import load_dotenv
+from adndiscord.pathconf import PATHS, PATHS_TO_TOUCH
+from adndiscord.utils import check_paths, terminate, log
+from logging import basicConfig, DEBUG, INFO, WARNING
+from admbot import bot, token
+import os
 
-init()
+def init():
+    # Initialize Paths
+    for path in PATHS_TO_TOUCH:
+        path.touch()
+    bad_path = check_paths()
+    if bad_path:
+        terminate(f"Path does not exist. {bad_path}")
+    # Initialize Logging
+    basicConfig(filename=PATHS['LOG_FILE'], level=DEBUG)
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
 
-client = discord.Client()
-
-@client.event
-async def on_ready():
-    for guild in client.guilds:
-        if guild.name == GUILD:
-            break
-
-    print(
-        f'{client.user} is connected to the following guild:\n'
-        f'{guild.name}(id: {guild.id})'
-    )
-
-    testing_channel = client.get_channel(730254366740709397)
-    await testing_channel.send(wrap(
-        """
-        Discord Bot is Online and Ready. 
-        Be aware that bot commands are only available when I am running the server. 
-        They will not work when it is off.
-        """
-    ))
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    if message == "roll":
-        ability_scores = AbilityScoreGen()
-        print(ability_scores)
-        await message.channel.send(str(ability_scores))
+if __name__ == '__main__':
+    init()
+    load_dotenv()
+    bot.run(os.environ['DISCORD_TOKEN'])
 
 
 
-client.run(TOKEN)
+
+
+
+
