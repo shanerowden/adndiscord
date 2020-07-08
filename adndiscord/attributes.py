@@ -16,7 +16,8 @@ class AbilityScoreGen:
     DEFAULT_MAX = 18
 
     def __repr__(self):
-        return f"AbilityScoreGen(rolls={self.all_rolls})"
+        return f"AbilityScoreGen(rolls={self.final})"
+
 
     def __init__(
         self, d_quan: int = DEFAULT_DQ,
@@ -37,6 +38,8 @@ class AbilityScoreGen:
         self.times_difference = self.get_difference(d_times, AbilityScoreGen.DEFAULT_DT)
 
         self.roll_all(d_quan, d_times)
+        
+        self.final = self.all_rolls
 
     @staticmethod
     def get_difference(value: int, default: int) -> int:
