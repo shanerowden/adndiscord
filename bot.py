@@ -24,6 +24,9 @@ async def on_ready():
         f'{guild.name}(id: {guild.id})'
     )
 
+    testing_channel = client.get_channel(730254366740709397)
+    await testing_channel.send("Discord Bot is Online and Ready. Be aware that bot commands are only available when I am running the server. They will not work when it is off.")
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
