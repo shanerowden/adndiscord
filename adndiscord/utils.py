@@ -10,7 +10,6 @@ def check_paths(paths: list = PATHS):
     """
     try:
         for path in paths.values():
-            print(path)
             if not path.exists():
                 log(f'DOES NOT EXIST: {path}')
                 return path

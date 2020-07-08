@@ -2,9 +2,6 @@ from adndiscord.pathconf import PATHS, PATHS_TO_TOUCH
 from adndiscord.utils import check_paths, terminate, log
 from adndiscord.attributes import AbilityScoreGen
 from logging import basicConfig, DEBUG, INFO, WARNING
-from sys import exit
-
-
 
 def init():
     # Initialize Paths
@@ -15,15 +12,15 @@ def init():
         terminate(f"Path does not exist. {bad_path}")
     
     # Initialize Logging
-    LOG_FILE = PATHS['LOG_FILE']
-    basicConfig(filename=LOG_FILE, level=DEBUG)
+    basicConfig(filename=PATHS['LOG_FILE'], level=DEBUG)
     
 def main():
-    ability_scores = AbilityScoreGen()
+    return AbilityScoreGen()
+
 
 if __name__ == "__main__":
     init()
-    main()
+    test = main()
 else:
     init()
 

@@ -1,7 +1,7 @@
 from pathlib import Path
 
 USER_HOME = Path.home()
-PROJECTS_DIR =  USER_HOME / "Projects"
+PROJECTS_DIR = USER_HOME / "Projects"
 PROJECT_NAME = "adndiscord"
 PROJECT_ROOT = PROJECTS_DIR / PROJECT_NAME
 
